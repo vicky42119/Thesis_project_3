@@ -1,24 +1,25 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Question and Answer</title>
-    <link rel="stylesheet" href="style.css">
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline';">
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.5.0-beta4/html2canvas.min.js"></script>
 </head>
 <body>
     <div class="container">
-        <h1>Answer the Question</h1>
-        <p id="answer">This is the answer.</p>
-        <form id="question-form">
-            <label for="question">Ask a question:</label>
-            <input type="text" id="question" required>
-            <button type="submit">Submit</button>
-        </form>
+        <h1>Typography Generator</h1>
+        <input type="text" id="wordInput" placeholder="Enter a word">
+        <button id="generateButton">Generate Typography</button>
+        <button id="resetButton">Reset</button>
+        <button id="downloadButton">Download Canvas</button>
+    </div>
+    <div class="canvas-container" id="resultContainer">
+        <div class="result-container" ></div>
     </div>
     <script src="script.js"></script>
-    <script src="https://apis.google.com/js/api.js"></script>
 </body>
 </html>
+
+
+
+
 

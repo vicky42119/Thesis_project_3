@@ -1,51 +1,130 @@
-document.addEventListener("DOMContentLoaded", function () {
-    const answerElement = document.getElementById("answer");
-    const questionForm = document.getElementById("question-form");
+document.getElementById("generateButton").addEventListener("click", function() {
+    const wordInput = document.getElementById("wordInput").value;
+    const resultContainer = document.getElementById("resultContainer");
 
-    // Load the Google Sheets API
-    gapi.load('client:auth2', initClient);
-
-    function initClient() {
-        gapi.client.init({
-            apiKey: 'AIzaSyDHINE-9nuGk1L1M7SZrVb1OG0PadzaS6s', // Replace with your API key
-            clientId: '350638424163-avqurhrj154g80kdab5qo8a6ua3od0th.apps.googleusercontent.com', // Replace with your OAuth client ID
-            discoveryDocs: ['https://sheets.googleapis.com/$discovery/rest?version=v4'],
-            scope: 'https://www.googleapis.com/auth/spreadsheets',
-        }).then(function () {
-            // Authenticate the user (you may need to handle user sign-in)
-            return gapi.auth2.getAuthInstance().signIn();
-        }).then(function () {
-            // Continue with the rest of the code after authentication
-            questionForm.addEventListener("submit", function (e) {
-                e.preventDefault();
-                const questionInput = document.getElementById("question");
-                const question = questionInput.value;
-
-                if (question.trim() !== "") {
-                    // Send the question to the Google Sheets
-                    accessGoogleSheets(question);
-                    questionInput.value = ""; // Clear the input field
-                }
-            });
-        });
+    if (wordInput.trim() === "") {
+        alert("Please enter a word.");
+        return;
     }
 
-    function accessGoogleSheets(user_question) {
-        gapi.client.sheets.spreadsheets.values.append({
-            spreadsheetId: '1fs2SWp0i3vZb_4BZVDHh2EHrespFRGZdCSPDPOZnLSM', // Replace with your Google Sheet ID
-            range: 'Sheet1', // Replace with your sheet name
-            valueInputOption: 'RAW',
-            insertDataOption: 'INSERT_ROWS',
-            values: [[user_question]],
-        }).then(function (response) {
-            console.log('Question added to Google Sheets', response);
-            // Optionally, you can display a confirmation message to the user here
-        }, function (reason) {
-            console.error('Error adding question to Google Sheets:', reason.result.error.message);
-            // Optionally, you can display an error message to the user here
-        });
+    // Clear previous results
+    while (resultContainer.firstChild) {
+        resultContainer.removeChild(resultContainer.firstChild);
+    }
+
+    const numInstances = Math.floor(Math.random() * 10) + 30; // Generate 20 to 30 instances
+    const inputBox = document.getElementById("wordInput");
+    const inputBoxRect = inputBox.getBoundingClientRect();
+
+    const fonts = [
+        "Times New Roman",
+        "Century Gothic",
+        "Helvetica",
+        "Georgia",
+        "Baskerville",
+        "Palatino",
+        "Garamond",
+        "Book Antiqua",
+        "Didot",
+        "Rockwell",
+    ]; // Array of serif and cleaner typefaces
+
+    for (let i = 0; i < numInstances; i++) {
+        const randomX = Math.random() * window.innerWidth;
+        const randomY = Math.random() * (window.innerHeight - inputBoxRect.height); // Prevent words from covering the input box
+        const randomFontSize = Math.floor(Math.random() * 1000) + 10; // Random font size between 10 and 100 pixels
+        const randomFont = fonts[Math.floor(Math.random() * fonts.length)]; // Random font from the array
+
+        const typographyElement = document.createElement("div");
+        typographyElement.style.position = "absolute";
+
+        // Randomly choose orientation (horizontal or vertical)
+        const orientation = Math.random() < 0.5 ? "horizontal" : "vertical";
+
+        if (orientation === "horizontal") {
+            typographyElement.style.left = randomX + "px";
+            typographyElement.style.top = randomY + "px";
+        } else {
+            typographyElement.style.writingMode = "vertical-lr"; // Set vertical writing mode
+            typographyElement.style.left = randomX + "px";
+            typographyElement.style.top = randomY + "px";
+        }
+
+        typographyElement.style.fontSize = randomFontSize + "px";
+        typographyElement.style.color = "black";
+        typographyElement.style.fontFamily = randomFont; // Set a random font
+        typographyElement.style.zIndex = i; // To control overlay order
+        typographyElement.textContent = wordInput;
+
+        // Change the color of overlapping text
+        if (i > 0) {
+            typographyElement.style.mixBlendMode = "difference"; // Set the blend mode to "difference"
+            typographyElement.style.color = "white"; // Change the color of the overlapping part
+        }
+
+        resultContainer.appendChild(typographyElement);
+    }
+
+    // Randomize the background color of the canvas to a pastel color
+    const randomCanvasColor = getRandomPastelColor();
+    resultContainer.style.backgroundColor = randomCanvasColor;
+});
+
+document.getElementById("resetButton").addEventListener("click", function() {
+    const resultContainer = document.getElementById("resultContainer");
+
+    // Clear all generated typography
+    while (resultContainer.firstChild) {
+        resultContainer.removeChild(resultContainer.firstChild);
     }
 });
+
+// Function to get a random pastel color
+function getRandomPastelColor() {
+    const letters = "0123456789ABCDEF";
+    let color = "#";
+    for (let i = 0; i < 6; i++) {
+        color += letters[Math.floor(Math.random() * 16)];
+    }
+    return color;
+}
+
+// Add an event listener to the download button using html2canvas
+document.getElementById("downloadButton").addEventListener("click", function() {
+    const resultContainer = document.getElementById("resultContainer");
+
+    // Use html2canvas to capture the content and create an image
+    html2canvas(resultContainer).then(function(canvas) {
+        // Convert the canvas to a data URL
+        const canvasDataUrl = canvas.toDataURL("image/png");
+
+        // Create a temporary anchor element for downloading
+        const a = document.createElement("a");
+        a.href = canvasDataUrl;
+        a.download = "canvas_image.png";
+
+        // Simulate a click on the anchor element to trigger the download
+        a.click();
+    });
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
