@@ -12,7 +12,7 @@ document.getElementById("generateButton").addEventListener("click", function() {
         resultContainer.removeChild(resultContainer.firstChild);
     }
 
-    const numInstances = Math.floor(Math.random() * 10) + 30; // Generate 20 to 30 instances
+    const numInstances = Math.floor(Math.random() * 10) + 20; // Generate 50 to 100 instances
     const inputBox = document.getElementById("wordInput");
     const inputBoxRect = inputBox.getBoundingClientRect();
 
@@ -32,7 +32,7 @@ document.getElementById("generateButton").addEventListener("click", function() {
     for (let i = 0; i < numInstances; i++) {
         const randomX = Math.random() * window.innerWidth;
         const randomY = Math.random() * (window.innerHeight - inputBoxRect.height); // Prevent words from covering the input box
-        const randomFontSize = Math.floor(Math.random() * 1000) + 10; // Random font size between 10 and 100 pixels
+        const randomFontSize = Math.floor(Math.random() * 1000) + 10; // Random font size between 40 and 100 pixels
         const randomFont = fonts[Math.floor(Math.random() * fonts.length)]; // Random font from the array
 
         const typographyElement = document.createElement("div");
@@ -89,25 +89,21 @@ function getRandomPastelColor() {
     return color;
 }
 
-// Add an event listener to the download button using html2canvas
+// Add an event listener to the download button
 document.getElementById("downloadButton").addEventListener("click", function() {
     const resultContainer = document.getElementById("resultContainer");
 
-    // Use html2canvas to capture the content and create an image
-    html2canvas(resultContainer).then(function(canvas) {
-        // Convert the canvas to a data URL
-        const canvasDataUrl = canvas.toDataURL("image/png");
-
+    // Convert the content of the resultContainer to an image
+    domtoimage.toBlob(resultContainer).then(function(blob) {
         // Create a temporary anchor element for downloading
         const a = document.createElement("a");
-        a.href = canvasDataUrl;
+        a.href = URL.createObjectURL(blob);
         a.download = "canvas_image.png";
 
         // Simulate a click on the anchor element to trigger the download
         a.click();
     });
 });
-
 
 
 

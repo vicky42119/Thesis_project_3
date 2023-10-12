@@ -5,10 +5,13 @@ body {
     font-family: Arial, sans-serif;
     text-align: center;
     margin: 0;
+    background-color: #000000;
 }
 
 h1 {
     font-size: 40pt;
+    margin-top: 0;
+    color: white;
 }
 
 .container {
@@ -25,9 +28,9 @@ input[type="text"] {
 }
 
 button {
-    background-color: #ffffff;
-    border: 1px solid #000000;
-    color: rgb(0, 0, 0);
+    background-color: #000000;
+    border: 1px solid #ffffff;
+    color: rgb(255, 255, 255);
     border: none;
     padding: 10px 20px;
     cursor: pointer;
@@ -35,19 +38,19 @@ button {
 }
 
 #resetButton {
-    background-color: #ffffff;
-    border: 1px solid #000000;
+    background-color: #000000;
+    border: 1px solid #ffffff;
     width: 105pt;
 }
 
 #generateButton {
-    background-color: #ffffff;
-    border: 1px solid #000000;
+    background-color: #000000;
+    border: 1px solid #ffffff;
 }
 
 #downloadButton {
-    background-color: #ffffff;
-    border: 1px solid #000000;
+    background-color: #000000;
+    border: 1px solid #ffffff;
 }
 
 .canvas-container {
