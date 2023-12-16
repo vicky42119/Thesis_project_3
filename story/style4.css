@@ -1,0 +1,84 @@
+@import url('https://fonts.googleapis.com/css2?family=La+Belle+Aurore&display=swap');
+
+body {
+    background-color: #111;
+    color: #fff;
+    padding: 50px;
+  }
+
+  .container {
+    text-align: left;
+    width: 30%;
+
+  }
+
+  
+ .date {
+    text-align: left;
+    width: 30%;
+
+  }
+
+  .entry {
+    text-align: left;
+  width: 50%;
+  }
+
+  .why {
+    text-align: center;
+  margin-top: -200pt;
+  margin-bottom: -400pt;
+  }
+ 
+  h1 {
+    color: #e9e9e9;
+    font-size: 10pt;
+    line-height: 14pt;
+  }
+
+
+  h2 {
+    color: #ff0000;
+    font-family: 'La Belle Aurore';
+  }
+
+  h3 {
+    color: #ff0000;
+    font-family: 'La Belle Aurore';
+    font-size: 300pt;
+  }
+
+/* Add these styles to your existing styles or create a new section for them */
+
+.dateandentry .date,
+.dateandentry .entry {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
+
+}
+
+.dateandentry .date.show,
+.dateandentry .entry.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+
+.dateandentry {
+
+  margin-top: 300pt;
+}
+
+.allentries {
+
+  display: flex;
+  flex-direction: row;
+  flex-grow: inherit;
+  flex-wrap: wrap;
+}
+
+
+
+
+ 
