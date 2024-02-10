@@ -3,6 +3,15 @@ let rotationSpeed = 0.005; // Adjust the rotation speed as needed
 let sensorVisibility = {}; // Object to manage the visibility of each sensor's data points
 let table; // Variable to hold the CSV data
 
+// Pastel colors for each sensor
+const sensorColors = {
+  'EEG.AF3': '#FFB3BA', // Pastel Red
+  'EEG.T7': '#BAFFC9', // Pastel Green
+  'EEG.Pz': '#BAE1FF', // Pastel Blue
+  'EEG.T8': '#FFFFBA', // Pastel Yellow
+  'EEG.AF4': '#FFDFBA' // Pastel Orange
+};
+
 function preload() {
   // Load the CSV file
   table = loadTable(
@@ -15,7 +24,8 @@ function preload() {
 }
 
 function setup() {
-  createCanvas(390, 400, WEBGL);
+  let cnv = createCanvas(540, 1400, WEBGL);
+  cnv.id('canvas');
 
   if (!table) {
     console.error('CSV data not loaded. Check the console for preload errors.');
@@ -28,7 +38,7 @@ function setup() {
   // Create toggle buttons for each sensor
   createToggleButtons(sensorColumns);
 
-  camera(0, 50, 1000);
+  camera(0, 1000, 2500);
   orbitControl();
 }
 
@@ -72,10 +82,10 @@ function calculatePosition(sensor, value, index) {
 }
 
 function createToggleButtons(sensorColumns) {
-  let container = select('#toggle-buttons'); // Select the container using its ID
+  let container = select('#toggle-buttons'); // Assuming p5.dom is in use, else use document.getElementById
 
   sensorColumns.forEach((sensor, index) => {
-    let button = createButton(`Toggle ${sensor}`);
+    let button = createButton(` ${sensor}`);
     button.parent(container); // Append the button to the container
     button.mousePressed(() => sensorVisibility[sensor] = !sensorVisibility[sensor]);
   });
@@ -100,13 +110,12 @@ function drawSensorData(sensor) {
 
     push();
     translate(position.x, position.y, position.z);
-    fill(sensor === 'EEG.AF3' ? color(255, 0, 0) : color(100));
+    fill(sensorColors[sensor]); // Use the pastel color for the sensor
     noStroke();
     sphere(diameter);
     pop();
   }
 }
-
 
 
 
