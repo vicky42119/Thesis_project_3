@@ -1,87 +1,137 @@
 /* Base styles (applies to all screen sizes) */
-html, body {
-    overflow-x: hidden;
-    width: 100%;
-  }
 
-body {
-    position: relative;
-    overflow-x: hidden;
-  /* Establishes a positioning context for absolutely positioned elements */
-    /* Other styles remain unchanged */
-}
-
-body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    background-color: #000;
-    overflow-y: hidden;
-    color: white; /* Ensure all text is white for visibility */
-    overflow-x: hidden;
-}
-
-h1 {
-    font-size: 8pt;
-    margin: 20px 0; /* Adds space above and below the title */
-}
-
-/* Style for the toggle buttons */
-#toggle-buttons button {
-    background-color: #000; /* Button background */
-    color: #FFF; /* Text color */
-    border: 1px solid #FFF; /* White border */
-    padding: 3px 15px; /* Padding inside the buttons */
-    margin: 0 0px; /* Space between buttons */
-    cursor: pointer; /* Cursor to pointer to indicate it's clickable */
-    font-size: 12px; /* Adjust the font size as needed */
-}
-
-#toggle-buttons {
-    display: flex;
-    flex-direction: row;
-    justify-content: center; /* Center buttons horizontally */
-    gap: 10px; /* Space between buttons */
-    margin: 20px 0; /* Space above and below the button container */
-}
-
-#sensor-key {
-   
-    transform: translateX(-50%); /* Offset by half its width to truly center it */
-    border: 2px solid white; /* White border */
-    background-color: transparent; /* Transparent background */
-    padding: 10px;
-    border-radius: 5px; /* Optional: Adds rounded corners */
-    box-sizing: border-box; /* Ensures padding and border are included in width */
-}
-
-.sensor-color {
-    display: inline-block;
-    width: 20px;
-    height: 20px;
-    border: 1px solid #000; /* Adjusted to ensure visibility against the border */
-    margin-right: 5px;
-    vertical-align: middle;
-}
-
-ul {
-    list-style-type: none;
-    padding: 0;
-    margin: 0; /* Adjusted for consistency */
-}
-
-li {
-    margin-bottom: 5px;
-    color: white; /* Ensures text is white */
-}
 
 @media (max-width: 600px) {
+    
+
     #toggle-buttons {
         flex-direction: row; /* Stack buttons vertically on small screens */
+    }
+
+    canvas {
+        z-index: -1;
+        left: 10vw;
+        overflow-y: visible;
+      }
+
+      html, body {
+        overflow-x: hidden;
+        width: 100%;
+      }
+    
+    body {
+        position: relative;
+        overflow-x: hidden;
+      /* Establishes a positioning context for absolutely positioned elements */
+        /* Other styles remain unchanged */
+    }
+    
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0px;
+        padding: 0;
+        background-color: #000;
+        color: white; /* Ensure all text is white for visibility */
+        display: flex;
+        flex-direction: column;
+    }
+
+    header {
+        margin-left: 15px
+      /* Establishes a positioning context for absolutely positioned elements */
+        /* Other styles remain unchanged */
+    }
+
+    .Description {
+        color: white; /* Ensure all text is white for visibility */
+        display: flex;
+        flex-direction: row;
+        gap: 15px;
+        flex-grow: inherit;
+        align-items: flex-end;
+        margin: 15px
+    }
+    
+    h1 {
+        font-size: 20pt;
+        font-weight: 700; 
+        color: white;/* Adds space above and below the title */
+    }
+
+    h2 {
+        font-size: 8pt;
+        font-weight: 200;
+        color: white; /* Adds space above and below the title */
+    }
+
+    h3 {
+        font-size: 8pt;
+        font-weight: 700;
+        color: white; /* Adds space above and below the title */
+    }
+    
+    
+    /* Style for the toggle buttons */
+    #toggle-buttons button {
+        background-color: #000; /* Button background */
+        color: #FFF; /* Text color */
+        border: 1px solid #FFF; /* White border */
+        padding: 3px 15px; /* Padding inside the buttons */
+        margin: 0 0px; /* Space between buttons */
+        cursor: pointer; /* Cursor to pointer to indicate it's clickable */
+        font-size: 12px; /* Adjust the font size as needed */
+    }
+    
+    #toggle-buttons {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center; /* Center buttons horizontally */
+        gap: 10px; /* Space between buttons */ /* Space above and below the button container */
+        margin-left: 10%;
+        margin-right: 10%;
+        margin-top: 20px;
+    }
+
+    #toggle-buttons button:active { 
+        background-color: red; 
+    }
+    
+    #sensor-key {
+       
+       /* Offset by half its width to truly center it */
+        border: 1px solid white; /* White border */
+        background-color: transparent; /* Transparent background */
+        padding: 10px;
+        border-radius: 2px; /* Optional: Adds rounded corners */
+        box-sizing: border-box;
+        font-size: 8pt;
+        display: flex; /* Ensures padding and border are included in width */
+        gap: 15px;
+        margin-left: 10%;
+        margin-right: 10%;
+
+        
+    }
+    
+    .sensor-color {
+        display: inline-block;
+        width: 20px;
+        height: 20px;
+        border: 1px solid #000; /* Adjusted to ensure visibility against the border */
+        margin-right: 5px;
+    
+    }
+    
+    ul {
+        list-style-type: none;
+        padding: 0;
+        margin: 0; /* Adjusted for consistency */
+    }
+    
+    li {
+        margin-bottom: 5px;
+        color: white; /* Ensures text is white */
     }
 }
 
@@ -89,12 +139,8 @@ li {
     /* Additional styles for larger screens can go here */
 }
 
-canvas {
-    position: relative;
-   margin: 0;
-    bottom: 600px;
-    z-index: -1;
-  }
+
+
 
 
   

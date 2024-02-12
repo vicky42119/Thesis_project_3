@@ -24,7 +24,7 @@ function preload() {
 }
 
 function setup() {
-  let cnv = createCanvas(540, 1400, WEBGL);
+  let cnv = createCanvas(400, 400, WEBGL);
   cnv.id('canvas');
 
   if (!table) {
@@ -38,7 +38,7 @@ function setup() {
   // Create toggle buttons for each sensor
   createToggleButtons(sensorColumns);
 
-  camera(0, 1000, 2500);
+  camera(0, 800, 500);
   orbitControl();
 }
 
