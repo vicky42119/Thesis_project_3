@@ -8,10 +8,10 @@
         flex-direction: row; /* Stack buttons vertically on small screens */
     }
 
-    canvas {
+    main {
         z-index: -1;
-        left: 10vw;
         overflow-y: visible;
+        align-self: center;
       }
 
       html, body {
@@ -36,8 +36,40 @@
         flex-direction: column;
     }
 
+    #overlay {
+        position: fixed; /* Cover the entire viewport */
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.8); /* Semi-transparent background */
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        z-index: 100; /* Ensure it's above all other content */
+      }
+      
+      #overlay img {
+        max-width: 80%; /* Ensure the image is responsive */
+        max-height: 80%;
+        background-color: white;
+      }
+      
+      #revealButton {
+        margin-top: 20px;
+        padding: 10px 20px;
+        font-size: 16px;
+        cursor: pointer;
+      }
+      
+
     header {
-        margin-left: 15px
+        margin-left: 15px;
+        margin-right: 15px;
+        display: flex;
+        align-items: flex-end;
+        justify-content: space-between;
       /* Establishes a positioning context for absolutely positioned elements */
         /* Other styles remain unchanged */
     }
@@ -46,10 +78,11 @@
         color: white; /* Ensure all text is white for visibility */
         display: flex;
         flex-direction: row;
-        gap: 15px;
+        gap: 20px;
         flex-grow: inherit;
         align-items: flex-end;
-        margin: 15px
+        margin-left: 15px;
+        margin-right: 15px;
     }
     
     h1 {
@@ -91,6 +124,7 @@
         margin-left: 10%;
         margin-right: 10%;
         margin-top: 20px;
+        margin-bottom: 20px;
     }
 
     #toggle-buttons button:active { 
@@ -110,6 +144,7 @@
         gap: 15px;
         margin-left: 10%;
         margin-right: 10%;
+        justify-content: flex-end;
 
         
     }

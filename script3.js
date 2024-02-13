@@ -117,6 +117,22 @@ function drawSensorData(sensor) {
   }
 }
 
+document.addEventListener('DOMContentLoaded', function() {
+  const overlay = document.getElementById('overlay');
+  const revealButton = document.getElementById('revealButton');
+
+  revealButton.addEventListener('click', function() {
+    // Fade out effect
+    overlay.style.opacity = '0';
+    overlay.style.transition = 'opacity 0.5s ease';
+
+    // Remove overlay after fade out
+    setTimeout(() => {
+      overlay.style.display = 'none';
+    }, 500); // Match the duration of the fade-out transition
+  });
+});
+
 
 
 
